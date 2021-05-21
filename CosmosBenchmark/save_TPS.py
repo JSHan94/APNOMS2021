@@ -9,14 +9,14 @@ import dateutil.parser
 import calendar
 
 port = 26657
-block_height = 221425
-
-f = open("./txs/txs_{}.csv".format(block_height),"w")
+block_height = int(input("Start Block height : "))
+ratio = float(input("IBC Ratio : "))
+f = open("./txs/txs_{}_{}.csv".format(block_height,ratio),"w")
 f.write("block_height,txs\n")
 
 
 pre_timestamp = 0
-while block_height<222000:
+while True:
     try : 
         url = "http://localhost:{}/block?height={}".format(port,block_height)
         res = requests.get(url)

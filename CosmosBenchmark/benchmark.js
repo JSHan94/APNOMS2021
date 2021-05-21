@@ -43,19 +43,30 @@ app.get('/v1/basic', async(req,res)=>{
     const result = await getRandomLine("parsed_keys.csv")
     var from = result[0]
     var to = result[1]
+    var rand = Math.random()
+    var ratio = 1.0
+    
     try{
-        var cmd = `yes y | sh benchmark.sh ${from} ${to} 1token`
+        var cmd
+        if(rand > ratio){
+            cmd = `yes y | planetd tx bank send "${from}" "${to}" 1token --home ~/.earth --chain-id earth`
+            //sh benchmark.sh ${from} ${to} 1token
+        }else{
+            cmd = `yes y | planetd tx blog send-ibcPost blog channel-0 "Hello" "Hello Mars" --from ${from} --chain-id earth --home ~/.earth`
+        }
         exec(cmd,
             function(err,stdout,stderr){
-                console.log("from : " + from + ", to : " + to)
+                console.log("from : " + from + ", to : " + to +", rand : " + rand )
                 // console.log(stdout);
-                // console.log(stderr);
+                //console.log(err)
+                //console.log(stderr);
             })
+        
     }catch(error){
         console.log(error)
     }
 })
-
+2800
 app.get('/v1/basic/tps', (req,res)=>{
     var latestBlock = 1
 

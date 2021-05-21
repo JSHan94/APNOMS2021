@@ -2002,6 +2002,7 @@ accounts:
 validator:
   name: user0
   staked: "100000000stake"
+
 faucet:
   host: ":4501"
   name: user1
@@ -2016,6 +2017,6 @@ host:
   frontend: ":8081"
   dev-ui: ":12346"
 genesis:
-  chain_id: "mars"
+  chain_id: "mercury"
 init:
-  home: "$HOME/.mars"
+  home: "$HOME/.mercury"

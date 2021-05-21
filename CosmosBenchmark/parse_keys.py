@@ -1,8 +1,9 @@
 
 # Save Cosmos Key in .csv file
 
+chain_name = "earth"
 import os
-os.system("planetd keys list --home ~/.venus > keys.txt")
+os.system("planetd keys list --home ~/.{} > keys.txt".format(chain_name))
 
 user_dict = {}
 with open('keys.txt') as file:
